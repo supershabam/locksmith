@@ -22,6 +22,7 @@ var locksmith = require('locksmith')({
 // locks are aquired on strings, when this is omitted, you lock
 // on the '' string
 locksmith(function(err, release) {
+  // no need to release if there is an error
   if (err) return console.error('something went wrong aquiring the lock!', err);
   
   // I am the only one running in the ENTIRE application (even on other servers)
@@ -38,6 +39,8 @@ twitterCache.contains(twitterId, function(err, inCache, data) {
   
   // didn't have the data, so let's aquire a lock on populating data
   locksmith('cache:' + twitterId, function(err, release) {
+    if (err) return console.error(err);
+    
     // it could be we were not the first to lock, so the cache may be populated now
     twitterCache.contains(twitterId, function(err, inCache, data) {
       if (inCache) {
