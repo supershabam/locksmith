@@ -6,7 +6,7 @@ distributed locking mechanism using redis
 ## use case
 I am trying to maximize the number of calls I can make to the 
 rate-limited Twitter API. I would like to cache my twitter results
-so that I can serve data from cache in the futur
+so that I can serve data from cache in the future
 
 
 example
