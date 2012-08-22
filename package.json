@@ -17,5 +17,9 @@
     "redis"
   ],
   "author": "Ian Hansen",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "redis": "~0.7.2",
+    "moment": "~1.7.0"
+  }
 }
