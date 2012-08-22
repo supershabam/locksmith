@@ -6,16 +6,13 @@ distributed locking mechanism using redis
 ## use case
 I am trying to maximize the number of calls I can make to the 
 rate-limited Twitter API. I would like to cache my twitter results
-so that I can serve data from cache in the future
-
+so that I can serve data from cache in the future.
 
 example
 -------
 
 ```javascript
 var locksmith = require('locksmith')({
-  redis_host: 'localhost',
-  redis_prefix: '__locksmith:',
   timeout: 2 * 60 * 1000 // 2 minutes
 });
 
@@ -58,3 +55,13 @@ twitterCache.contains(twitterId, function(err, inCache, data) {
   });
 });
 ```
+
+## similar projects
+https://github.com/PatrickTulskie/redis-lock
+
+## locking with redis
+http://redis.io/commands/setnx
+ 
+## license
+(c) Copyright 2012, Ian Hansen (MIT Licensed).
+See LICENSE for more info.
