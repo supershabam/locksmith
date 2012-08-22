@@ -13,7 +13,7 @@ example
 
 ```javascript
 var locksmith = require('locksmith')({
-  timeout: 2 * 60 * 1000 // 2 minutes
+  timeout: 120 // 2 minutes
 });
 
 // locks are aquired on strings, when this is omitted, you lock
