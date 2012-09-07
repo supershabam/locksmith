@@ -1,6 +1,6 @@
 {
   "name": "locksmith",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "distributed locking mechanism using redis",
   "main": "index.js",
   "scripts": {
