@@ -5,8 +5,32 @@ distributed locking mechanism using redis
 
 ## use case
 I am trying to maximize the number of calls I can make to the 
-rate-limited Twitter API. I would like to cache my twitter results
-so that I can serve data from cache in the future
+rate-limited Twitter API. I cache the results, but often I
+fire off additional requests to the API for the same data 
+before I finish populating the cache.
+
+I want to hit the API only if the data is not in cache AND no other
+server is currently working to populate the cache.
+
+## api
+```javascript
+var locksmith = require('locksmith')({
+  host: String (optional) - defaults to 'localhost'
+  port: Integer (optional) - defaults to 6379
+  prefix: String (optional) - defaults to '__locksmith:'
+  timeout: Integer (optional) - given in seconds defaults to 120 (two minutes)
+});
+
+/**
+ * locksmith is a function
+ * 
+ * key - the system-wide keyname to lock on (defaults to '')
+ * callback - function to execute (the critical code) when you have the lock
+ *  callback = function(err, release)
+ *  - release is a function that you MUST call when you are done with the lock
+ */
+locksmith([key], callback)
+```
 
 
 example
@@ -14,9 +38,7 @@ example
 
 ```javascript
 var locksmith = require('locksmith')({
-  redis_host: 'localhost',
-  redis_prefix: '__locksmith:',
-  timeout: 2 * 60 * 1000 // 2 minutes
+  timeout: 120 // 2 minutes
 });
 
 // locks are aquired on strings, when this is omitted, you lock
@@ -58,3 +80,13 @@ twitterCache.contains(twitterId, function(err, inCache, data) {
   });
 });
 ```
+
+## similar projects
+https://github.com/PatrickTulskie/redis-lock
+
+## locking with redis
+http://redis.io/commands/setnx
+ 
+## license
+(c) Copyright 2012, Ian Hansen (MIT Licensed).
+See LICENSE for more info.
