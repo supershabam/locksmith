@@ -25,7 +25,7 @@ function Locksmith(options) {
   if (options.redisClient) {
     this._redisClient = options.redisClient;
   } else {
-    this._redisClient = redis.createClient(host, port, options);
+    this._redisClient = redis.createClient(port, host, options);
   }
 
   this._prefix = prefix;
