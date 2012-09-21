@@ -3,6 +3,8 @@ locksmith
 
 distributed locking mechanism using redis
 
+[![endorse](http://api.coderwall.com/supershabam/endorsecount.png)](http://coderwall.com/supershabam)
+
 ## use case
 I am trying to maximize the number of calls I can make to the 
 rate-limited Twitter API. I cache the results, but often I
